@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>00</title>
+</head>
+
+<body>
+  <div id="container">
+  </div>
+  <script>
+    // const url = `https://hacker-news.firebaseio.com/v0/user/jl.json`;
+    const url = `https://hacker-news.firebaseio.com/v0/user/not.found`;
+
+    function fetchStuff(url) {
+      fetch(url)
+        .then( response => {
+            if (response.status !== 200) { return Promise.resolve('not okay')}
+            return response.json();
+        })
+        .then( result=>{
+          console.log('result1: ', result)
+        })
+    }
+    fetchStuff(url);
+
+    // --------------------
+
+    async function fetchStuff_2(url) {
+      const response = await fetch(url);
+      if (response.status !== 200) { return Promise.resolve('not okay')}
+      return response.json();
+    }
+
+    fetchStuff_2(url).then( result=>{
+      console.log('result2: ', result)
+    });
+
+
+    // --------------------
+
+    async function fetchStuff_3(url) {
+      const response = await fetch(url);
+      let result;
+      if (response.status !== 200) {
+        result = await Promise.resolve('not okay')
+      } else {
+        result = await response.json();
+      }
+      console.log('result3: ', result)
+      return result;
+    }
+
+    fetchStuff_3(url).then( result=>{
+      console.log('result3: ', result)
+    });
+
+  </script>
+</body>
+
+</html>

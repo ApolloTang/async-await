@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>00</title>
+</head>
+
+<body>
+  <div id="container">
+  </div>
+  <script>
+    const sleep = (ms=0) => new Promise( rs => setTimeout(rs, ms) );
+
+    const go = async () => {
+      console.log('start');
+      await sleep(1000);
+      console.log('done');
+    }
+
+    go();
+  </script>
+</body>
+
+</html>

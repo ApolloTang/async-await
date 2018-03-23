@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>async await</title>
+</head>
+
+<body>
+  <script>
+    const a = async () => {
+      // throw new Error('shit!');
+      return new Promise((rs, rj)=>{
+        rj('shit')
+        // rs('cake')
+      })
+
+    }
+
+    const b = async () => {
+      try {
+        return await a()
+      } catch (e) {
+        console.log('in catch block: ', e)
+        return e
+      }
+    }
+
+    b().then(
+      s=>{console.log('s', s)},
+      e=>{console.log('e', e)}
+    )
+  </script>
+</body>
+
+</html>

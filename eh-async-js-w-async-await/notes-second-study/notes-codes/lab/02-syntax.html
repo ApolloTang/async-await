@@ -1,0 +1,31 @@
+<script>
+
+  // function declaration
+  async function fetchStuff_1(url) { }
+
+  // function expression
+  const fetchStuff_2 = async function (url) { };
+
+  // arrow function
+  const fetchStuff_3 = async (url) => { };
+
+
+  /// -----------------------
+
+  // await keyword must exist inside async function, so the following is wrong:
+  const response = await aFunctionThatReturnPromise();
+
+  // The follow is correct, which is a fix to the above:
+  (async () => {
+    const response = await aFunctionThatReturnPromise();
+  })()
+
+
+  /// -----------------------
+  // Async method in class
+
+  class fetchStuffClass {
+    async aFunctionThatReturnPromise() {
+    }
+  }
+</script>

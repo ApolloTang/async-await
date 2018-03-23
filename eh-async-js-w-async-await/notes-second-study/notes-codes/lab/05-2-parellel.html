@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>00</title>
+</head>
+
+<body>
+  <div id="container">
+  </div>
+  <script>
+    const sleep = (ms=0, data) => new Promise( rs => {
+      console.log('timeout start', data);
+      setTimeout( ()=>{
+        console.log('timeout end', data);
+        rs(data);
+      }, ms)
+    });
+
+    const go = async () => {
+      console.log('start');
+      const promise_a = sleep(3000, 'a');
+      const promise_b = sleep(1000, 'b');
+      const promise_c = sleep(5000, 'c');
+
+      const a = await promise_a;
+      const b = await promise_b;
+      const c = await promise_c;
+
+      console.log('all done: ',a,b,c )
+      return [a,b,c]
+
+      // Don't use this pattern where you get the promise then separately wait on them;
+      // instead, use Promise.all.
+      // While this pattern does run the two operations in parallel,
+      // it doesn't handle rejection properly if both promises reject.
+      // ref: https://stackoverflow.com/questions/46889290/waiting-for-more-than-one-concurrent-await-operation
+    }
+
+    go().then(([a,b,c])=>{
+      console.log(a,b,c)
+    });
+
+  </script>
+</body>
+
+</html>

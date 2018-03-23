@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>00</title>
+</head>
+
+<body>
+  <div id="container">
+  </div>
+  <script>
+    // const url = `https://hacker-news.firebaseio.com/v0/user/jl.json`;
+    // const url = `https://hacker-news.firebaseio.com/v0/user/notfoundxxx.json`;
+    const url = `https://hacker-news.firebaseio.com/v0/user/error.error`;
+    // const url = `https://hacker-news.firebaseio.com/v0/user/not.found`;
+
+    // const url = `https://api.github.com/users/idontexitxxxx`;
+    // const url = `https://api.github.com/users/apollotang`;
+    // const url = `https://api.github.com/error`;
+
+    function fetchStuff(url) {
+      fetch(url)
+        .then(
+          response => {
+
+            console.log('[1] status: ', response.status);
+            console.log('[1] ok ', response.ok);
+
+            let body;
+            const responseJson = response.json()
+            console.log('[1] responseJson:', responseJson)
+
+            return responseJson;
+          }
+        ).then(
+          body=>{ console.log('[1] body: ', body ) }
+        ).catch(e=>{
+          console.log('[1] catch: ', e)
+        })
+    }
+    fetchStuff(url);
+
+    // --------------------
+
+    async function fetchStuff_2(url) {
+      try {
+        const response = await fetch(url)
+
+        console.log('[2] status: ', response.status);
+        console.log('[2] ok ', response.ok);
+
+        const responseJson = response.json();
+        console.log('[2] responseJson: ', responseJson)
+
+        const body = await responseJson;
+        console.log('[2] body; ', body)
+      } catch (err) {
+        console.log('[2] catch: ', err)
+      }
+    }
+
+    fetchStuff_2(url)
+
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>00</title>
+</head>
+
+<body>
+  <div id="container">
+  </div>
+  <script>
+    const sleep = (ms=0, data) => new Promise( rs => {
+      console.log('timeout start', data);
+      setTimeout( ()=>{
+        console.log('timeout end', data);
+        rs(data);
+      }, ms)
+    });
+
+    const go = async () => {
+      console.log('start');
+      const promise_a = sleep(3000, 1);
+      const promise_b = sleep(1000, 2);
+      const promise_c = sleep(5000, 3);
+
+      const sum = (await Promise.all([
+        promise_a, promise_b, promise_c
+      ])).reduce((acc, item)=>acc+item, 0)
+
+      return sum;
+    }
+
+    go().then((sum)=>{
+      console.log('sum: ', sum)
+    });
+
+  </script>
+</body>
+
+</html>

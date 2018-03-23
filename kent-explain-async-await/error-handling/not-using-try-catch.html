@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>D3 lab</title>
+  <style type="text/less">
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+  </style>
+</head>
+
+<body>
+  <div class="chart">
+    Chart has not being loaded
+  </div>
+  <script src="http://localhost:9091/less/dist/less.js"></script>
+  <script src="http://localhost:9091/lodash/lodash.js"></script>
+  <script src="http://localhost:9091/chance/chance.js"></script>
+  <script src="http://localhost:9091/d3/d3.js"></script>
+  <script src="http://localhost:9091/d3/d3-selection-multi.v1.js"></script>
+  <script>
+    const a = async () => {
+      // throw new Error('shit!');
+      return new Promise((rs, rj)=>{
+        rj('shit')
+        // rs('cake')
+      })
+
+    }
+
+    const b = async () => {
+      return await a().catch(e=>{
+        console.log('in catch block: ', e)
+        return e
+      })
+    }
+
+    // const b = async () => {
+    //   try {
+    //     return await a()
+    //   } catch (e) {
+    //     console.log('in catch block: ', e)
+    //   }
+    // }
+
+    b().then(
+      s=>{console.log('s', s)},
+      e=>{console.log('e', e)}
+    )
+
+  </script>
+</body>
+
+</html>

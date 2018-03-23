@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>D3 lab</title>
+  <style type="text/less">
+    * {
+      margin: 0; padding: 0; box-sizing: border-box;
+    }
+    #container {
+      width: 100%;
+      outline: red solid 1px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="container">
+    foo
+  </div>
+  <script src="http://localhost:9091/less/dist/less.js"></script>
+  <script src="http://localhost:9091/lodash/lodash.js"></script>
+  <script src="http://localhost:9091/d3/d3.js"></script>
+  <script>
+    const container = document.getElementById('container');
+    container.innerHTML = `
+      d3: version ${d3.version} </br>
+      _: version ${_.VERSION} </br>
+      less: version ${less.version}
+    `;
+  </script>
+</body>
+
+</html>
